@@ -7,41 +7,36 @@ using System.Collections.Generic;
 /// <summary>
 /// A bag (multiset) data structure implemented using a linked list.
 /// </summary>
+
 public class LinkedBag<T> : ICollection<T>
 {
     /// <summary>
     /// A node in the linked list.
     /// </summary>
-    private class Node
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="Node"/> class.
+    /// </remarks>
+    private class Node(T data)
     {
         /// <summary>
         /// Gets or sets the data stored in the node.
         /// </summary>
-        public T Data { get; set; }
+        public T Data { get; set; } = data;
         /// <summary>
         /// Gets or sets the next node in the linked list.
         /// </summary>
         public Node Next { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Node"/> class.
-        /// </summary>
-        public Node(T data)
-        {
-            Data = data;
-            Next = null;
-        }
     }
 
     /// <summary>
     /// The head of the linked list.
     /// </summary>
-    private Node _head;
+    private Node? _head;
 
     /// <summary>
     /// The tail of the linked list.
     /// </summary>
-    private Node _tail;
+    private Node? _tail;
 
     /// <summary>
     /// The number of elements in the bag.
@@ -184,4 +179,14 @@ public class LinkedBag<T> : ICollection<T>
     /// </summary>
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+    public override bool Equals(object? obj)
+    {
+        return obj is LinkedBag<T> bag &&
+               EqualityComparer<Node>.Default.Equals(_head, bag._head);
+    }
+
+    public override int GetHashCode()
+    {
+        throw new NotImplementedException();
+    }
 }

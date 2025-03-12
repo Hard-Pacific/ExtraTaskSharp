@@ -21,7 +21,7 @@ public class LinkedBagTests
     public void Add_AddsElementToBag()
     {
         _bag.Add(5);
-        Assert.That(1, Is.EqualTo(_bag.Count));
+        Assert.That(_bag.Count, Is.EqualTo(1));
         Assert.That(_bag.Contains(5), Is.True);
     }
 
@@ -31,7 +31,7 @@ public class LinkedBagTests
         _bag.Add(1);
         _bag.Add(2);
         _bag.Clear();
-        Assert.That(0, Is.EqualTo(_bag.Count));
+        Assert.That(_bag.Count, Is.EqualTo(0));
         Assert.That(_bag.Contains(1), Is.False);
         Assert.That(_bag.Contains(2), Is.False);
     }
@@ -72,7 +72,7 @@ public class LinkedBagTests
         _bag.Add(5);
         bool removed = _bag.Remove(5);
         Assert.That(removed, Is.True);
-        Assert.That(0, Is.EqualTo(_bag.Count));
+        Assert.That(_bag.Count, Is.EqualTo(0));
         Assert.That(_bag.Contains(5), Is.False);
     }
 
@@ -83,7 +83,7 @@ public class LinkedBagTests
         _bag.Add(5);
         bool removed = _bag.Remove(5);
         Assert.That(removed, Is.True);
-        Assert.That(1, Is.EqualTo(_bag.Count));
+        Assert.That(_bag.Count, Is.EqualTo(1));
     }
 
     [Test]
@@ -91,7 +91,7 @@ public class LinkedBagTests
     {
         bool removed = _bag.Remove(5);
         Assert.That(removed, Is.False);
-        Assert.That(0, Is.EqualTo(_bag.Count));
+        Assert.That(_bag.Count, Is.EqualTo(0));
     }
 
     [Test]
@@ -100,7 +100,7 @@ public class LinkedBagTests
         _bag.Add(1);
         _bag.Add(2);
         _bag.Add(3);
-        List<int> list = new List<int>();
+        List<int> list = new();
         foreach (int item in _bag)
         {
             list.Add(item);
@@ -138,7 +138,7 @@ public class LinkedBagTests
         _bag.Add(1);
         int[] array = new int[10];
         _bag.CopyTo(array, 5);
-        Assert.That(1, Is.EqualTo(array[5]));
+        Assert.That(array[5], Is.EqualTo(1));
     }
 
     [Test]
